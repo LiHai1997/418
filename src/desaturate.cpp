@@ -13,23 +13,18 @@ void desaturate(
   ////////////////////////////////////////////////////////////////////////////
   // Add your code here
   double r, g, b, h, s, v;
-  for (int hei = 0; hei < height; h++) 
+  for (int i = 0; i < desaturated.size(); i+=3)
   {
-	  for (int w = 0; w < width; w++)
-	  {
-		  r = rgb[hei * width * 3 + w * 3] / 255.0;
-		  g = rgb[hei * width * 3 + w * 3 + 1] / 255.0;
-		  b = rgb[hei * width * 3 + w * 3 + 2] / 255.0;
+	  r = rgb[i] / 255.0;
+	  g = rgb[i + 1] / 255.0;
+	  b = rgb[i + 2] / 255.0;
+	  rgb_to_hsv(r, g, b, h, s, v);
+	  s *= (1 - factor);
+	  hsv_to_rgb(h, s, v, r, g, b);
+	  desaturated[i] = r * 255;
+	  desaturated[i + 1] = g * 255;
+	  desaturated[i + 2] = b * 255;
 
-		  rgb_to_hsv(r, g, b, h, s, v);
-		  s *= (1.0 - factor);
-
-		  hsv_to_rgb(h, s, v, r, g, b);
-		  desaturated[hei * width * 3 + w * 3] = (unsigned char)(r * 255);
-		  desaturated[hei * width * 3 + w * 3 + 1] = (unsigned char)(g * 255);
-		  desaturated[hei * width * 3 + w * 3 + 2] = (unsigned char)(b * 255);
-	  }
-  
   }
   ////////////////////////////////////////////////////////////////////////////
 }
