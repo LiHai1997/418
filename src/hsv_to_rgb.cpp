@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <cassert>
 #include "hsv_to_rgb.h"
 
 void hsv_to_rgb(
@@ -16,6 +17,9 @@ void hsv_to_rgb(
   r = 0;
   g = 0;
   b = 0;
+  assert(h >= 0.0 && h <= 360.0 && "hsv_rgb input h");
+  assert(s >= 0.0 && s <= 1.0 && "hsv_rgb input s");
+  assert(v >= 0.0 && v <= 1.0 && "hsv_rgb input v");
 
   double chroma = v * s;
   double h_prime = h / 60;
@@ -53,11 +57,13 @@ void hsv_to_rgb(
 	  b = chroma;
   }
 
-  r = std::round(255 * (r + m));
-  g = std::round(255 * (g + m));
-  b = std::round(255 * (b + m));
+  r += m;
+  g += m;
+  b += m;
 
-
+  assert(r >= 0.0 && r <= 1.0 && "hsv_rgb output r");
+  assert(g >= 0.0 && g <= 1.0 && "hsv_rgb output g");
+  assert(b >= 0.0 && b <= 1.0 && "hsv_rgb output b");
 
   ////////////////////////////////////////////////////////////////////////////
 }
