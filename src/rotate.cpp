@@ -12,13 +12,16 @@ void rotate(
   // Add your code here
   for (int h = 0; h < height;h++) {
 	  for (int w = 0; w < width; w++) {
+		  int index = num_channels * (h * width + w);
 		  if (num_channels == 3) {
+			  int rot_index = 3 * ((width - w - 1) * height + h);
 			  for (int i = 0; i < 3; i++) {
-				  rotated[h * height * num_channels + w * num_channels + i] = input[(w + 1) * width * num_channels - h * num_channels - (3 - i)];
+				  rotated[rot_index + i] = input[index + i];
 			  }
 		  }
 		  else {
-			  rotated[h * height + w] = input[(w + 1) * width - h - 1];
+			  int rot_index = (width - w - 1) * height + h;
+			  rotated[rot_index] = input[index];
 		  }
 	  }
   }
