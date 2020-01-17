@@ -14,12 +14,14 @@ void rotate(
 	  for (int w = 0; w < width; w++) {
 		  int index = num_channels * (h * width + w);
 		  if (num_channels == 3) {
+			  // handle rgb
 			  int rot_index = 3 * ((width - w - 1) * height + h);
 			  for (int i = 0; i < 3; i++) {
 				  rotated[rot_index + i] = input[index + i];
 			  }
 		  }
 		  else {
+			  // handle grayscale
 			  int rot_index = (width - w - 1) * height + h;
 			  rotated[rot_index] = input[index];
 		  }

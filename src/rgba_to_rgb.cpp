@@ -12,6 +12,7 @@ void rgba_to_rgb(
   // Add your code here
   int count = 0;
   for (int i = 0; i < rgba.size(); i++) {
+	  // skip the 4th alpha channel
 	  if (std::fmod(i + 1, 4) != 0) {
 		  rgb[count] = rgba[i];
 		  count++;

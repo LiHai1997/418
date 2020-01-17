@@ -15,11 +15,16 @@ void desaturate(
   double r, g, b, h, s, v;
   for (int i = 0; i < desaturated.size(); i+=3)
   {
+	  // convert to hsv
 	  r = rgb[i] / 255.0;
 	  g = rgb[i + 1] / 255.0;
 	  b = rgb[i + 2] / 255.0;
 	  rgb_to_hsv(r, g, b, h, s, v);
+
+	  // desaturate
 	  s *= (1 - factor);
+
+	  // convert back to rgb
 	  hsv_to_rgb(h, s, v, r, g, b);
 	  desaturated[i] = r * 255;
 	  desaturated[i + 1] = g * 255;

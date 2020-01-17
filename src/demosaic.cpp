@@ -19,7 +19,7 @@ void demosaic(
 		  std::vector<double> r_channel;
 		  std::vector<double> g_channel;
 		  std::vector<double> b_channel;
-
+		  // calculate rgb value from 3x3 neighbour
 		  for (int i = -1; i < 2; i++)
 		  {
 			  for (int j = -1; j < 2; j++) 
@@ -41,6 +41,7 @@ void demosaic(
 				  }
 			  }
 		  }
+		  // calculate average of three channel
 		  unsigned char r_average = (unsigned char)(std::accumulate(r_channel.begin(), r_channel.end(), 0.0) / r_channel.size());
 		  unsigned char g_average = (unsigned char)(std::accumulate(g_channel.begin(), g_channel.end(), 0.0) / g_channel.size());
 		  unsigned char b_average = (unsigned char)(std::accumulate(b_channel.begin(), b_channel.end(), 0.0) / b_channel.size());

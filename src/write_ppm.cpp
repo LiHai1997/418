@@ -15,31 +15,36 @@ bool write_ppm(
     ".ppm only supports RGB or grayscale images");
   ////////////////////////////////////////////////////////////////////////////
   // Replace with your code here:
-  std::ofstream fs;
+  std::ofstream file;
   try {
-	  fs.open(filename, std::ios::binary);
-	  if (fs.fail()) {
+	  file.open(filename, std::ios::binary);
+	  // return false if the file can not open
+	  if (file.fail()) {
 		  return false;
 	  }
+
 	  if (num_channels == 3) {
-		  fs << "P6" << std::endl;
+		  // P6 is RGB image in ppm file
+		  file << "P6" << std::endl;
 	  }
 	  else {
-		  fs << "P5" << std::endl;
+		  // P5 is grayscale in ppm file
+		  file << "P5" << std::endl;
 	  }
-	  fs << width << " " << height << std::endl << "255" << std::endl;
+	  file << width << " " << height << std::endl << "255" << std::endl;
 	
+	  // write data in
 	  int total_size = width * height * num_channels;
 	  for (int i = 0; i < total_size; i++) {
-		  fs << data[i];
+		  file << data[i];
 	  }
 
-	  fs.close();
+	  file.close();
 	  return true;
   }
   catch (int e) {
-	  if (fs.is_open()) {
-		  fs.close();
+	  if (file.is_open()) {
+		  file.close();
 	  }
 	  return false;
   }

@@ -17,6 +17,8 @@ void hsv_to_rgb(
   r = 0;
   g = 0;
   b = 0;
+
+  // input value range check
   assert(h >= 0.0 && h <= 360.0 && "hsv_rgb input h");
   assert(s >= 0.0 && s <= 1.0 && "hsv_rgb input s");
   assert(v >= 0.0 && v <= 1.0 && "hsv_rgb input v");
@@ -61,6 +63,7 @@ void hsv_to_rgb(
   g += m;
   b += m;
 
+  // output value range check
   assert(r >= 0.0 && r <= 1.0 && "hsv_rgb output r");
   assert(g >= 0.0 && g <= 1.0 && "hsv_rgb output g");
   assert(b >= 0.0 && b <= 1.0 && "hsv_rgb output b");

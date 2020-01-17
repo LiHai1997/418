@@ -13,11 +13,13 @@ void reflect(
   for (int h = 0; h < height;h++) {
 	  for (int w = 0; w < width; w++) {
 		  if (num_channels == 3) {
+			  // handle rgb
 			  for (int i = 0; i < 3; i++) {
 				  reflected[h * width * num_channels + w * num_channels + i] = input[(h + 1) * width * num_channels - w * num_channels - (3-i)];
 			  }
 		  }
 		  else {
+			  // handle grayscale
 			  reflected[h * width + w] = input[(h + 1) * width - w - 1];
 		  }
 	  }
