@@ -41,7 +41,10 @@ void rgb_to_hsv(
   {
 	  h = 60 * (4 + (r - g) / diff);
   }
-  
+  if (h<0)
+  {
+	  h += 360;
+  }
   // handle s
   if (max == 0)
   {
