@@ -10,5 +10,17 @@ void reflect(
   reflected.resize(width*height*num_channels);
   ////////////////////////////////////////////////////////////////////////////
   // Add your code here
+  for (int h = 0; h < height;h++) {
+	  for (int w = 0; w < width; w++) {
+		  if (num_channels == 3) {
+			  for (int i = 0; i < 3; i++) {
+				  reflected[h * width * num_channels + w * num_channels + i] = input[(h + 1) * width * num_channels - w * num_channels - (3-i)];
+			  }
+		  }
+		  else {
+			  reflected[h * width + w] = input[(h + 1) * width - w - 1];
+		  }
+	  }
+  }
   ////////////////////////////////////////////////////////////////////////////
 }
